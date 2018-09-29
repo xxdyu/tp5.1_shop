@@ -10,7 +10,7 @@
 // +----------------------------------------------------------------------
 
 Route::get('hello/:name', 'index/hello');
-Route::post('hello/:name', 'index/hello');
+Route::posts('hello/:name', 'index/hello1');
 Route::rule('hello/:name', 'index/hello');
 
 
