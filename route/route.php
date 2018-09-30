@@ -21,6 +21,7 @@ Route::group('index',function(){
 	Route::get('admin','index/admin/index');
 	Route::get('test','index/test_login/index');
 	Route::get('util','index/util/index');
+	Route::get('models','index/admin/models')->middleware('AuthMiddleware');
 });
 
 
