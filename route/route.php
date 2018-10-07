@@ -9,20 +9,31 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-Route::get('hello/:name', 'index/hello');
-Route::post('hello/:name', 'index/hello');
-Route::rule('hello/:name', 'index/hello');
-
 
 //路由组
 
 Route::group('index',function(){
 	Route::get('index','index/index/index');
+	Route::get('index','index/index/index');
 	Route::get('admin','index/admin/index');
 	Route::get('test','index/test_login/index');
 	Route::get('util','index/util/index');
+	Route::get('demo','index/util/demo');
 	Route::get('models','index/admin/models')->middleware('AuthMiddleware');
 });
+
+//检测登陆信息
+//home/index/getlogininfo
+
+//处理注册信息
+
+//home/index/register
+/*Route::group('home',function(){
+	Route::get('getlogininfo','home/index/getlogininfo');
+	
+});*/
+
+//
 
 
 
