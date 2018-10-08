@@ -1,5 +1,7 @@
 <?php
 namespace app\service;
+
+use app\model\User;
 /**
  * 
  */
@@ -25,6 +27,22 @@ class LoginService
 	public function outlogin()
 	{
 		
+	}
+
+	public function checkLogin($data)
+	{
+		$user = new User();
+
+		//处理密码操作
+
+		if ($user->sloveLogin($data)) {
+			//信息验证成功后的操作
+
+			
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 }

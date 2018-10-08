@@ -288,15 +288,18 @@ function btnlogin() {
 	var password = $('#txtPWD').val();
 	var vertification = $('#vertification').val();
 	// 后台验证
-	$.post("http://tp.23673.com/login/index", {
-		"username" : userName,
-		"password" : password,
+	$.post("http://localhost/tp5.1_shop/public/home/login/index", {
+		"user_name" : userName,
+		"user_password" : password,
 		"vertification" : vertification
 	}, function(data) {
-		if (data['code'] == 1) {
-			window.location.href = data['url'];
-		}else if(data['code'] == 2){
-			window.location.href ="http://tp.23673.com/index/index";
+			var data = JSON.parse(data);
+		if (data.code == 1) {
+			//window.location.href = data['url'];
+			window.location.href ="http://localhost/tp5.1_shop/public/home";
+
+		}else if(data.code == 2){
+			window.location.href ="http://localhost/tp5.1_shop/public/home";
 		}else {
 			$("#hint").css("display", "block");
 			$("#hint").text(data['message']); //  用户名密码提示

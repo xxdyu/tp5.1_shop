@@ -42,16 +42,16 @@ class Index extends Controller
     		->select());*/
     	//批量新增
 
-    /*	$data = [
-    		['name'=>'apc_add','pass'=>'123456S'],
-    		['name'=>'apc_add','pass'=>'123456S'],
-    		['name'=>'apc_add','pass'=>'123456S'],
-    		['name'=>'apc_add','pass'=>'123456S'],
-    		['name'=>'apc_add','pass'=>'123456S'],	
-    	];	
-    	$res = Db::table('insert')->insertAll($data);
+    // $data = [
+    // 		['name'=>'apc_add','pass'=>'123456S'],
+    // 		['name'=>'apc_add','pass'=>'123456S'],
+    // 		['name'=>'apc_add','pass'=>'123456S'],
+    // 		['name'=>'apc_add','pass'=>'123456S'],
+    // 		['name'=>'apc_add','pass'=>'123456S'],	
+    // 	];	
+    // 	$res = Db::table('insert')->insertAll($data);
 
-	*/
+	
     //递增inc('money','1000');
     	// $res = Db::table('insert')->inc('money','1000')->update();
      //递增setInc('money','1000');
@@ -67,15 +67,31 @@ class Index extends Controller
 
     }
 
+    //模型操作
     public function model()
     {
     	// dump(User::where('uid',63)->field('uid')->select());
     	$data = [
-    		'role_name' => 'ceshi',
+            ['role_name' => 'ceshi'],
+            ['role_name' => 'ceshi'],
+            ['role_name' => 'ceshi'],
+    		['role_name' => 'ceshi'],
     	];
     	$userRole = new UserRole();
-    	$userRole->save($data);
+
+        //单个新增
+        //$userRole->save($data);
+
+        //批量化新增
+    	$userRole->saveAll($data);
 
 
+    }
+
+    public function contact()
+    {
+        //一对一查询
+        $userRole = User::get(63);
+        dump($userRole->userOnerole);
     }
 }
