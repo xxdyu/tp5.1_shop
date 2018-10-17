@@ -19,11 +19,15 @@ class User extends Model
 	{
 		return $this->hasOne('UserRole','role_id','role_id');
 	}
-
-	public function sloveLogin($data)
+	//用户名的查询验证
+	public function checkUserName($user_name)
 	{
-		//获取登陆信息
-		return $this->where('user_name',$data['user_name'])->where('user_password',$data['user_name'])->find();
+		return $this->where('user_name',$user_name)->find();
+	}
+	//用户名的查询验证用户名和密码的验证
+	public function checkUserPassword($user_name,$user_password)
+	{
+		return $this->where('user_name',$user_name)->where('user_password',$user_password)->find();
 	}
 	
 }

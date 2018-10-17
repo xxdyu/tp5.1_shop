@@ -27,7 +27,6 @@ class Index extends Controller
 
 	public function getlogininfo()
 	{
-		$data = [];
-		echo json_encode($data);
+		
 	}
 }

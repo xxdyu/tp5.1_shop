@@ -71,6 +71,7 @@
 						<!-- <div class="td1"><label><input  class="J_expire" name="expire" checked="checked" type="checkbox" value="1">7天内自动登录</label></div> -->
 						<div class="td2" style="float: right;text-align: left;"><a href="http://tp.23673.com/login/findpasswd">忘记密码?</a></div>
 					</div>
+					{:token()}
 					<div class="btnbox"><input class="btn_login J_hoverbut" type="button" id="btnLogin" onclick="btnlogin();" value="登录"></div>
 					
 			 							<div class="qqbox">
@@ -286,14 +287,14 @@ function btnlogin() {
 	}
 	var userName = $('#txtName').val();
 	var password = $('#txtPWD').val();
-	var vertification = $('#vertification').val();
+	var token  = $("input[type=hidden]").val()
 	// 后台验证
-	$.post("http://localhost/tp5.1_shop/public/home/login/index", {
+	$.post("http://127.0.0.1:8000/doLogin", {
 		"user_name" : userName,
 		"user_password" : password,
-		"vertification" : vertification
+		"__token__" : token
+		//"vertification" : vertification
 	}, function(data) {
-			var data = JSON.parse(data);
 		if (data.code == 1) {
 			//window.location.href = data['url'];
 			window.location.href ="http://localhost/tp5.1_shop/public/home";

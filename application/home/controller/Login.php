@@ -4,6 +4,7 @@ namespace app\home\controller;
 use think\Controller;
 use Request;
 use app\service\LoginService;
+use Cookie;
 /**
  * 商城首页
  */
@@ -21,41 +22,37 @@ class Login extends Controller
     }
 	public function index()
 	{
-		
-		if(Request::isPost()){
-			//处理登录业务
-			$data = array();
-			if($this->LoginService->checkLogin(Request::param())){
-				//模仿ajax返回
-				$data['code'] = 2;
-				echo  json_encode(['code'=>1]);die;
-				echo  json_encode($data = ['code'=>1]);die;
-				echo  json_encode($data['code'] = 1);die;
-			}else{
-				$data['code'] = 1;
-				echo json_encode(['code'=>1]);die;
-			}
-
-			
-		}
-		
 		return $this->fetch('login');
 	}
 
-	public function register(Request $Request)
+	/*public function register()
 	{
-		$loginData = $Request->param();
+		$loginData = Request::param();
 		//在服务层doRe()处理注册业务
-		if($res = $this->LoginService->doRe($loginData)){
-			dump($res);
-		}else{
-			return $this->fetch();
-		}
+		$res = $this->LoginService->doRe($loginData);
+		//判断是否发生了异常并返回错误信息
+		if(isset($res['stu'])) return json($res['data']);
 		
-	}
+	}*/
 
 	public function email()
 	{
 		return $this->fetch();
+	}
+
+	public function doLogin()
+	{
+		$loginData = Request::param();
+		//在服务层doRe()处理注册业务
+		$info = $this->LoginService->checkDoLogin($loginData);
+		if(!isset($info['userInfo'])){
+			//直接的返回错误信息
+			return json($info);die;
+		}
+		//存入cookie
+		Cookie::set('user_info',$info,3600);
+		return json($info);
+
+
 	}
 } 

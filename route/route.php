@@ -14,14 +14,16 @@
 
 Route::group('index',function(){
 	Route::get('index','index/index/index');
-	Route::get('index','index/index/index');
+	//Route::get('moreSort','index/index/moreSort');
 	Route::get('admin','index/admin/index');
 	Route::get('test','index/test_login/index');
 	Route::get('util','index/util/index');
 	Route::get('demo','index/util/demo');
 	Route::get('models','index/admin/models')->middleware('AuthMiddleware');
 });
-
+	Route::get('moreSort','index/index/moreSort');
+	Route::get('getAllMotheds','index/index/getAllMotheds');
+	Route::post('doLogin','home/login/doLogin')->middleware('LoginMiddleware');
 //检测登陆信息
 //home/index/getlogininfo
 

@@ -9,7 +9,7 @@ class AuthMiddleware
     {
     	if (!$request->param('token')) {
     		Log::write('登录失败');
-    		//return \redirect("index\index\index");
+    		//return \redirect("index\index\inedx");
     	}
     	
     	return $next($request);
